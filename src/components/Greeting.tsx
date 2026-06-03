@@ -1,16 +1,26 @@
+import { useState, useEffect } from "react"
+
 export function Greeting () {
 
-    async function handleClick () {
-        const res = await fetch('http://localhost:3000')
-        const data = await res.json()
-        console.log(data)
-        
+    const [greeting, setGreeting] = useState('Hello')
+    type dataType = {
+        greeting: string
     }
+    useEffect(() => {
+        async function fetchGreeting () {
+            const res = await fetch('http://localhost:3000', { credentials: 'include' })
+            if(res.ok) {
+                const data: dataType = await res.json()
+                setGreeting(data.greeting)
+            }
+        }
+        fetchGreeting()
+    }, [])
 
     return (
         <>
-            <p>Hello World</p>
-            <button onClick={handleClick}>Click</button>
+            <h1>Hello</h1>
+            <h1>{ greeting }</h1>
         </>
     )
 }
