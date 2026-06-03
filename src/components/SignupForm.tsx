@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export function SignupForm() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate()
+    
     const handleSubmit = async (e: any) => {
       e.preventDefault(); // prevent page reload                                                                                                                                          
-      await fetch(`http://localhost:3000/users/signup`, {
+      const res = await fetch(`http://localhost:3000/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ name: name, password: password })
       })
+      if(res.ok) {
+        navigate('/')
+      }
     };
 
 
