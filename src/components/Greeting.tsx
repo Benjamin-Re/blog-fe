@@ -19,7 +19,6 @@ export function Greeting () {
 
     return (
         <>
-            <h1>Hello</h1>
             <h1>{ greeting }</h1>
         </>
     )
