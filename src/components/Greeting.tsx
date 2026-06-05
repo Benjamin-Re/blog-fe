@@ -1,25 +1,12 @@
-import { useState, useEffect } from "react"
+import { useAuth } from "../context/AuthContext" 
 
 export function Greeting () {
 
-    const [greeting, setGreeting] = useState('Hello')
-    type dataType = {
-        greeting: string
-    }
-    useEffect(() => {
-        async function fetchGreeting () {
-            const res = await fetch('http://localhost:3000', { credentials: 'include' })
-            if(res.ok) {
-                const data: dataType = await res.json()
-                setGreeting(data.greeting)
-            }
-        }
-        fetchGreeting()
-    }, [])
+    const { name } = useAuth()
 
     return (
         <>
-            <h1>{ greeting }</h1>
+            <h1>{ name ? `Hello ${name}`: 'Hello' }</h1>
         </>
     )
 }

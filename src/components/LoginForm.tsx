@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext" 
 
 export function LoginForm() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
-
+    const { login } = useAuth()
+    
     const handleSubmit = async (e: any) => {
       e.preventDefault(); // prevent page reload                                                                                                                                          
       const res = await fetch(`http://localhost:3000/users/login`, {
@@ -15,6 +17,7 @@ export function LoginForm() {
         credentials: 'include'
       })
       if(res.ok) {
+        login(name)
         navigate('/')
       }
     };

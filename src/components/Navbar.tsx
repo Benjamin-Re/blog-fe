@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css"
+import { useAuth } from "../context/AuthContext" 
 
 
 export function Navbar() {
+    const { logout } = useAuth() 
     const navigate = useNavigate()
+    
     async function handleLogout() {
-        await fetch('http://localhost:3000/users/logout', {method: 'GET', credentials: 'include'})
+        logout()
         navigate('/')
     }
 
