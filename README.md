@@ -1,2 +1,2 @@
 # Todo
-- auth context provider to track logged status
+- auth context provider to track logged status [x]
