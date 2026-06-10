@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
+import { CreateMessagePage } from "./pages/CreateMessagePage"
 import { Navbar } from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<HomePage></HomePage>} />
           <Route path="/users/signup" element={<SignupPage></SignupPage>} />
           <Route path="/users/login" element={<LoginPage></LoginPage>} />
+          <Route path="/messages/create" element={<CreateMessagePage></CreateMessagePage>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
