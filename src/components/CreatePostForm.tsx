@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-export function CreateMessageForm() {
+export function CreatePostForm() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate()
 
     const handleSubmit = async (e: any) => {
       e.preventDefault(); // prevent page reload                                                                                                                                          
-      const res = await fetch(`http://localhost:3000/messages/create`, {
+      const res = await fetch(`http://localhost:3000/posts/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ title, content }),

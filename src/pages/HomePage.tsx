@@ -3,21 +3,21 @@ import { Greeting } from '../components/Greeting'
 
 
 export function HomePage () {
-    const [messages, setMessages] = useState<{ id: number; title: string; content: string }[]>([])
+    const [posts, setPosts] = useState<{ id: number; title: string; content: string }[]>([])
 
     useEffect(()=>{
-        async function getMessages() {
-            const raw = await fetch('http://localhost:3000/messages')
+        async function getPosts() {
+            const raw = await fetch('http://localhost:3000/posts')
             const data = await raw.json()
             return data
         }
-        getMessages().then(setMessages)
+        getPosts().then(setPosts)
     }, [])
     return (
         <>
             <Greeting></Greeting>
             <div>
-                { messages.map(m => <div key={m.id}><h3>{m.title}</h3><p>{m.content}</p></div>) }
+                { posts.map(m => <div key={m.id}><h3>{m.title}</h3><p>{m.content}</p></div>) }
             </div>
         </>
     )

@@ -17,7 +17,7 @@ export function Navbar() {
             <Link to="/">Home</Link>
             <Link to="/users/login">Login</Link>
             <Link to="/users/signup">Signup</Link>
-            <Link to="/messages/create">Create Message</Link>
+            <Link to="/posts/create">Create Post</Link>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )
