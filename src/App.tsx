@@ -6,6 +6,7 @@ import { SignupPage } from "./pages/SignupPage";
 import { CreatePostPage } from "./pages/CreatePostPage"
 import { Navbar } from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
+import { EditPostForm } from "./components/EditPostForm"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/users/signup" element={<SignupPage></SignupPage>} />
           <Route path="/users/login" element={<LoginPage></LoginPage>} />
           <Route path="/posts/create" element={<CreatePostPage></CreatePostPage>} />
+          <Route path="/posts/edit/:id" element={<EditPostForm></EditPostForm>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
