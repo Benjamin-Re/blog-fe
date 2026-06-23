@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"
 
 export function EditPostForm() {
   const [title, setTitle] = useState("");
@@ -7,13 +8,14 @@ export function EditPostForm() {
   const navigate = useNavigate();
   const params = useParams();
   const postId = params.id
+  const { token } = useAuth()
 
   useEffect(() => {
     async function getPostById(postId: string) {
       const res = await fetch(`http://localhost:3000/posts/edit/${postId}`, {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        
       });
       if(res.ok){
         const data = await res.json()
@@ -33,9 +35,8 @@ export function EditPostForm() {
     const id = postId
     const res = await fetch(`http://localhost:3000/posts/edit`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ id, title, content }),
-      credentials: "include",
     });
     if (res.ok) {
       navigate("/");

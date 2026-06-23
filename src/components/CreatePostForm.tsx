@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 export function CreatePostForm() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate()
+    const { token } = useAuth()
 
     const handleSubmit = async (e: any) => {
-      e.preventDefault(); // prevent page reload                                                                                                                                          
+      e.preventDefault(); // prevent page reload
       const res = await fetch(`http://localhost:3000/posts/create`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ title, content }),
-        credentials: 'include'
       })
       if(res.ok) {
         navigate('/')

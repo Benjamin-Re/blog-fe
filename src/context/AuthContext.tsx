@@ -2,27 +2,27 @@ import { createContext, useState, useContext, ReactNode } from "react";
 
 const AuthContext = createContext<{
   name: string | null;
-  login: (name: string) => void;
+  token: string | null;
+  login: (name: string, token: string) => void;
   logout: () => void;
 } | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [name, setName] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  async function logout() {
-    await fetch("http://localhost:3000/users/logout", {
-      method: "GET",
-      credentials: "include",
-    });
+  function logout() {
     setName(null);
+    setToken(null);
   }
 
-  function login(name: string) {
+  function login(name: string, token: string) {
     setName(name);
+    setToken(token);
   }
 
   return (
-    <AuthContext.Provider value={{ name, login, logout }}>
+    <AuthContext.Provider value={{ name, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

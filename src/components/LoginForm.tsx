@@ -14,10 +14,10 @@ export function LoginForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ name: name, password: password }),
-        credentials: 'include'
       })
       if(res.ok) {
-        login(name)
+        const { token } = await res.json()
+        login(name, token)
         navigate('/')
       }
     };
