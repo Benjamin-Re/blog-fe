@@ -1,6 +1,6 @@
 # Todo
 - auth context provider to track logged status [x]
-- jwt for auth []
+- jwt for auth [x]
 - two fes 
     - one for writing and editing posts []
     - one for viewing posts and writing comments []
