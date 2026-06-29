@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Greeting } from "../components/Greeting";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"
+import DOMPurify from "dompurify";
 
 
 export function HomePage() {
@@ -40,7 +41,7 @@ export function HomePage() {
         {posts.map((m) => (
           <div key={m.id}>
             <h3>{m.title}</h3>
-            <p>{m.content}</p>
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(m.content) }} />
             <button onClick={() => handleEditClick(m.id)}>edit</button>
             <button onClick={() => handleDeleteClick(m.id)}>delete</button>
           </div>
