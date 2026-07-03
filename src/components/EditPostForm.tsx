@@ -12,7 +12,7 @@ export function EditPostForm() {
 
   useEffect(() => {
     async function getPostById(postId: string) {
-      const res = await fetch(`http://localhost:3000/posts/edit/${postId}`, {
+      const res = await fetch(`http://localhost:3000/posts/${postId}`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         
