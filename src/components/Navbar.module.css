@@ -1,4 +1,16 @@
 .navContainer {
     display: flex;
     gap: 1rem;
+    padding: 1rem;
+}
+
+.navContainer a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.active {
+    color: #aa3bff;
 }
