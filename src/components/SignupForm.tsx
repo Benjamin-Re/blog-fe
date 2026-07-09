@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import styles from './SignupForm.module.css'
 
 export function SignupForm() {
     const [name, setName] = useState('');
@@ -22,7 +23,7 @@ export function SignupForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <label htmlFor="name">Name: </label>
                 <input id="name" value={name} onChange={(e) => setName(e.target.value)}/>
                 <label htmlFor="pass">Password: </label>

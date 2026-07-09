@@ -16,17 +16,6 @@
     font-size: 1rem;
 }
 
-.editor {
-    background-color: white;
-    text-align: left;
-    height: 80%;
-}
-
-.editor div {
-    height: 100%;
-    color: black;
-}
-
 .form button {
     padding: 10px;
     font-size: 1.5rem;

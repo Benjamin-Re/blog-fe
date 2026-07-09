@@ -9,6 +9,7 @@
     flex-direction: column;
     line-height: 2rem;
     font-size: 1rem;
+    text-align: left;
 }
 
 .postCardContainer button {

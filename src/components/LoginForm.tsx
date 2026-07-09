@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext" 
-
+import styles from './LoginForm.module.css'
 export function LoginForm() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +25,7 @@ export function LoginForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <label htmlFor="name">Name: </label>
                 <input id="name" value={name} onChange={(e) => setName(e.target.value)}/>
                 <label htmlFor="pass">Password: </label>

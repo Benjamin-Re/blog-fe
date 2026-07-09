@@ -36,7 +36,7 @@ export function CreatePostForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label htmlFor="title">Title: </label>
         <input
           type="text"

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import styles from './EditPostForm.module.css'
 
 export function EditPostForm() {
   const [title, setTitle] = useState("");
@@ -9,6 +12,14 @@ export function EditPostForm() {
   const params = useParams();
   const postId = params.id
   const { token } = useAuth()
+
+  const editor = useEditor({
+    extensions: [StarterKit], // define your extension array
+    content: content, 
+    onUpdate: ({ editor }) => {
+      setContent(editor.getHTML());
+    },
+  });
 
   useEffect(() => {
     async function getPostById(postId: string) {
@@ -21,6 +32,7 @@ export function EditPostForm() {
         const data = await res.json()
         setTitle(data.post.title)
         setContent(data.post.content)
+        editor.commands.setContent(data.post.content)
       }
     }
     if(postId) {
@@ -45,7 +57,7 @@ export function EditPostForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label htmlFor="title">Title: </label>
         <input
           type="text"
@@ -54,11 +66,11 @@ export function EditPostForm() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <label htmlFor="content">Content: </label>
-        <input
-          type="text"
+        <EditorContent
           id="content"
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          className={styles.editor}
+          editor={editor}
         />
         <button type="submit">Submit</button>
       </form>
