@@ -21,7 +21,7 @@ export function CreatePostForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault(); // prevent page reload
-    const res = await fetch(`http://localhost:3000/posts/create`, {
+    const res = await fetch(`https://blog-api-silk-nine.vercel.app/posts/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

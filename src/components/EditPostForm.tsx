@@ -23,7 +23,7 @@ export function EditPostForm() {
 
   useEffect(() => {
     async function getPostById(postId: string) {
-      const res = await fetch(`http://localhost:3000/posts/${postId}`, {
+      const res = await fetch(`https://blog-api-silk-nine.vercel.app/posts/${postId}`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         
@@ -45,7 +45,7 @@ export function EditPostForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault(); // prevent page reload
     const id = postId
-    const res = await fetch(`http://localhost:3000/posts/edit`, {
+    const res = await fetch(`https://blog-api-silk-nine.vercel.app/posts/edit`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ id, title, content }),

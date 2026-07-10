@@ -9,7 +9,7 @@ export function HomePage() {
 
   useEffect(() => {
     async function getPosts() {
-      const raw = await fetch("http://localhost:3000/posts");
+      const raw = await fetch("https://blog-api-silk-nine.vercel.app/posts");
       const data = await raw.json();
       return data;
     }

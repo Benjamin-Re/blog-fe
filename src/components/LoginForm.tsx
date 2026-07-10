@@ -10,7 +10,7 @@ export function LoginForm() {
     
     const handleSubmit = async (e: any) => {
       e.preventDefault(); // prevent page reload                                                                                                                                          
-      const res = await fetch(`http://localhost:3000/users/login`, {
+      const res = await fetch(`https://blog-api-silk-nine.vercel.app/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ name: name, password: password }),

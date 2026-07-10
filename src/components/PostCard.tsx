@@ -13,7 +13,7 @@ export function PostCard(props: any) {
 
   function handleDeleteClick(id: any) {
     if(!token) throw new Error()
-    fetch(`http://localhost:3000/posts/delete`, {
+    fetch(`https://blog-api-silk-nine.vercel.app/posts/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
