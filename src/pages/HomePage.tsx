@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Greeting } from "../components/Greeting";
 import { PostCard } from "../components/PostCard";
+import { listPosts, type Post } from "../api/posts";
 
 export function HomePage() {
   const [posts, setPosts] = useState<
@@ -8,12 +9,7 @@ export function HomePage() {
   >([]);
 
   useEffect(() => {
-    async function getPosts() {
-      const raw = await fetch("https://blog-api-silk-nine.vercel.app/posts");
-      const data = await raw.json();
-      return data;
-    }
-    getPosts().then(setPosts);
+    listPosts().then(setPosts);
   }, []);
 
   function removeDeletedPost(id: Number) {
