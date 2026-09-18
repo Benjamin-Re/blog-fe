@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
 import { Greeting } from "../components/Greeting";
 import { PostCard } from "../components/PostCard";
-import { listPosts, type Post } from "../api/posts";
+import {usePosts} from '../hooks/usePosts'
 
 export function HomePage() {
-  const [posts, setPosts] = useState<
-    { id: number; title: string; content: string }[]
-  >([]);
-
-  useEffect(() => {
-    listPosts().then(setPosts);
-  }, []);
-
-  function removeDeletedPost(id: Number) {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
-  }
+  const { posts, removeDeletedPost } = usePosts() // This calls usePosts (the function) on every render of HomePage
 
   return (
     <>
