@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import styles from "./CreatePostForm.module.css";
+import { useCreatePost } from "../hooks/useCreatePost";
 
 export function CreatePostForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-  const { token } = useAuth();
-
+  const submitPost = useCreatePost();
   const editor = useEditor({
     extensions: [StarterKit], // define your extension array
-    content: "<p>Hello World!</p>", 
+    content: "<p>Hello World!</p>",
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML());
     },
@@ -21,17 +20,8 @@ export function CreatePostForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault(); // prevent page reload
-    const res = await fetch(`https://blog-api-silk-nine.vercel.app/posts/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ title, content }),
-    });
-    if (res.ok) {
-      navigate("/");
-    }
+    await submitPost({ title, content });
+    navigate("/");
   };
 
   return (

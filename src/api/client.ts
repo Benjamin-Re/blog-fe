@@ -21,6 +21,7 @@ export async function request<T>(
             headers,
             body: body === undefined ? undefined : JSON.stringify(body),
         })
+        if(!res.ok) throw new Error(`${method} ${path} failed: ${res.status}`)
     } catch (error: any) {
         throw error
     }

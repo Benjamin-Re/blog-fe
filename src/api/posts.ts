@@ -9,3 +9,11 @@ export type Post = {
 
 export const listPosts = () => request<Post[]>("/posts", { method: "GET" });
 
+export const createPost = (
+  input: { title: string; content: string },
+  token: string,
+) =>
+  request<void>("/posts/create", {
+    method: "POST",
+    body: input, token
+  });
