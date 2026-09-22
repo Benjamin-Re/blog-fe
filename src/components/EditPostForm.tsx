@@ -14,7 +14,7 @@ export function EditPostForm() {
   const postId = params.id;
   if (!postId) throw new Error("No PostID provided");
   const { post } = useGetPost(postId);
-  const submitEdit = useEditPost()
+  const submitEdit = useEditPost();
 
   const editor = useEditor({
     extensions: [StarterKit], // define your extension array
@@ -25,6 +25,8 @@ export function EditPostForm() {
   });
 
   useEffect(() => {
+    console.log("POST FROM HOOK:", post);
+    console.log("POST CONTENT:", post?.content);
     if (!post || !editor) return;
     setTitle(post.title);
     setContent(post.content);
