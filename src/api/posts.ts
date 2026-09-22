@@ -15,5 +15,15 @@ export const createPost = (
 ) =>
   request<void>("/posts/create", {
     method: "POST",
-    body: input, token
+    body: input,
+    token,
   });
+
+export const getPostById = (token: string, postId: string) => {
+  return request<Post>(`/posts/${postId}`, { method: "GET", token });
+};
+
+export const updatePost = (
+  input: { id: string; title: string; content: string },
+  token: string,
+) => request<void>("/posts/edit", { method: "POST", body: input, token });
