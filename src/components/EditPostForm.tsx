@@ -18,7 +18,7 @@ export function EditPostForm() {
 
   const editor = useEditor({
     extensions: [StarterKit], // define your extension array
-    content: content,
+    content: "",
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML());
     },
