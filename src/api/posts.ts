@@ -19,7 +19,7 @@ export const createPost = (
     token,
   });
 
-export const getPostById = (token: string, postId: string) => {
+export const getPostById = (postId: string, token: string) => {
   return request<Post>(`/posts/${postId}`, { method: "GET", token });
 };
 
