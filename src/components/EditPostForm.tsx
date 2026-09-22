@@ -41,6 +41,11 @@ export function EditPostForm() {
 
   return (
     <>
+      <div>
+        <p>Post loaded: {post ? "YES" : "NO"}</p>
+        <p>Title: {post?.title}</p>
+        <p>Content: {post?.content}</p>
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <label htmlFor="title">Title: </label>
         <input
