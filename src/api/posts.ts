@@ -20,7 +20,7 @@ export const createPost = (
   });
 
 export const getPostById = (postId: string, token: string) => {
-  return request<Post>(`/posts/${postId}`, { method: "GET", token });
+  return request<{ post: Post }>(`/posts/${postId}`, { method: "GET", token });
 };
 
 export const updatePost = (

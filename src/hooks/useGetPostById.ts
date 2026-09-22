@@ -8,7 +8,9 @@ export function useGetPost(postId: string) {
 
   useEffect(() => {
     if (!token) throw new Error("Not logged in");
-    getPostById(postId, token).then(setPost);
+    getPostById(postId, token).then((result) => {
+        setPost(result.post)
+    });
   }, [postId]);
 
   return { post }
