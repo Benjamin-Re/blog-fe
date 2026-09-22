@@ -9,7 +9,7 @@ export function useGetPost(postId: string) {
   useEffect(() => {
     if (!token) throw new Error("Not logged in");
     getPostById(postId, token).then(setPost);
-  }, [postId]);
+  }, [postId, token]);
 
   return { post }
 }
