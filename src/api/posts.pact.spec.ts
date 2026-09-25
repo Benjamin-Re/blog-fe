@@ -60,10 +60,3 @@ describe("POST /posts/create", () => {
     });
   });
 });
-
-export type Post = {
-  id: number;
-  title: string;
-  content: string;
-  timestamp: string;
-};
