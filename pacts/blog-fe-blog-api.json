@@ -4,6 +4,42 @@
   },
   "interactions": [
     {
+      "description": "a post request to create a new post",
+      "request": {
+        "body": {
+          "content": "My Content",
+          "title": "My Title"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/posts/create"
+      },
+      "response": {
+        "body": {
+          "content": "My Content",
+          "title": "My Title"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
       "description": "a request for all posts",
       "request": {
         "method": "GET",
