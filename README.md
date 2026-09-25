@@ -3,5 +3,6 @@
 - jwt for auth [x]
 - two fes 
     - one for writing and editing posts [x]
-    - one for viewing posts and writing comments []
+    - one for viewing posts and writing comments [x]
 - use rich text editor to write posts [x] (fipFap)
+- error handling []

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useLogin } from "../hooks/useAuthActions";
+import { loginUser } from "../api/users"
+
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
@@ -9,11 +10,10 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
-  const { loginPost } = useLogin();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault(); // prevent page reload
-    const token = await loginPost(name, password);
+    const { token }  = await loginUser(name, password);
     login(name, token);
     navigate("/");
   };

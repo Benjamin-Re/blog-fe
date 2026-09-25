@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import styles from "./CreatePostForm.module.css";
-import { useCreatePost } from "../hooks/useCreatePost";
+import { createPost } from "../api/posts"
+import { useAuth } from "../context/AuthContext";
 
 export function CreatePostForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-  const submitPost = useCreatePost();
+  const { token } = useAuth();
   const editor = useEditor({
     extensions: [StarterKit], // define your extension array
     content: "<p>Hello World!</p>",
@@ -20,7 +21,8 @@ export function CreatePostForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault(); // prevent page reload
-    await submitPost({ title, content });
+    if (!token) throw new Error("Not logged in");
+    createPost({ title, content }, token);
     navigate("/");
   };
 

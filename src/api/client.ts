@@ -13,7 +13,6 @@ export async function request<T>(
     const headers: Record<string, string> = {}
     if (body !== undefined) {headers["Content-Type"] = "application/json"}
     if (token) headers.Authorization = `Bearer ${token}`;
-    console.log(import.meta.env.VITE_API_BASE_URL)
     let res: Response;
     try {
         res = await fetch(`${import.meta.env.VITE_API_BASE_URL}${path}`, {

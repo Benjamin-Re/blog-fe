@@ -2,25 +2,20 @@ import DOMPurify from "dompurify";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import styles from "./PostCard.module.css"
+import { deletePost } from "../api/posts"
 
 export function PostCard(props: any) {
   const navigate = useNavigate();
   const { token } = useAuth();
 
   function handleEditClick(id: any) {
+    if(!token) throw new Error("Not logged in")
     navigate(`/posts/edit/${id}`);
   }
 
   function handleDeleteClick(id: any) {
     if(!token) throw new Error()
-    fetch(`https://blog-api-silk-nine.vercel.app/posts/delete`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ id }),
-    });
+    deletePost(id, token)
     props.removeDeletedPost(id)
   }
 

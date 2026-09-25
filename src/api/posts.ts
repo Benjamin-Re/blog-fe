@@ -27,3 +27,7 @@ export const updatePost = (
   input: { id: string; title: string; content: string },
   token: string,
 ) => request<void>("/posts/edit", { method: "POST", body: input, token });
+
+export const deletePost = (id: string, token: string) => {
+  request<void>("/posts/delete", { method: "POST", body: { id }, token})
+}

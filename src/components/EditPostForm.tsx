@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetPost } from "../hooks/useGetPostById";
-import { useEditPost } from "../hooks/useEditPost";
+import { updatePost } from "../api/posts"
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import styles from "./EditPostForm.module.css";
+import { useAuth } from "../context/AuthContext";
 
 export function EditPostForm() {
   const [title, setTitle] = useState("");
@@ -14,7 +15,7 @@ export function EditPostForm() {
   const postId = params.id;
   if (!postId) throw new Error("No PostID provided");
   const { post } = useGetPost(postId);
-  const submitEdit = useEditPost();
+  const { token } = useAuth();
 
   const editor = useEditor({
     extensions: [StarterKit], // define your extension array
@@ -25,8 +26,6 @@ export function EditPostForm() {
   });
 
   useEffect(() => {
-    console.log("POST FROM HOOK:", post);
-    console.log("POST CONTENT:", post?.content);
     if (!post || !editor) return;
     setTitle(post.title);
     setContent(post.content);
@@ -35,7 +34,8 @@ export function EditPostForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await submitEdit({ id: postId, title, content });
+    if (!token) throw new Error("Not logged in");
+    updatePost({ id: postId, title, content }, token);
     navigate("/");
   };
 
